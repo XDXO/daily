@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View"/>
+        <import type="kr.plurly.daily.domain.Event"/>
+
+        <variable name="event" type="kr.plurly.daily.domain.Event"/>
+
+        <variable name="presenter" type="kr.plurly.daily.layer.craft.CraftPresenter"/>
+        <variable name="view" type="kr.plurly.daily.layer.craft.CraftView"/>
+
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/drawable_background"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"/>
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/craft_content_padding_side"
+                    android:paddingRight="@dimen/craft_content_padding_side"
+                    android:paddingBottom="@dimen/craft_content_spacing">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/inputTitleContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/label_craft_title_hint"
+                        android:textColorHint="@color/color_white_with_alpha">
+
+                        <EditText
+                            android:id="@+id/inputTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={event.title}"
+                            android:paddingBottom="@dimen/craft_content_text_padding_bottom"
+                            style="@style/TextAppearance.AppTheme.Large"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/craft_content_spacing"
+                        android:visibility="@{event.path != null ? View.VISIBLE : View.GONE}">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/craft_image_height"
+                            app:cardBackgroundColor="@color/cardview_photo_background"
+                            app:cardCornerRadius="@dimen/craft_image_radius">
+
+                            <ImageView
+                                android:id="@+id/imageViewContent"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"/>
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_small"
+                                android:layout_height="@dimen/icon_size_small"
+                                android:layout_gravity="right|top"
+                                android:layout_marginTop="@dimen/craft_image_icon_delete_margin"
+                                android:layout_marginRight="@dimen/craft_image_icon_delete_margin"
+                                android:src="@drawable/ic_close"
+                                android:clickable="true"
+                                android:onClick="@{() -> view.deletePhoto()}"/>
+
+                        </android.support.v7.widget.CardView>
+
+                    </LinearLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/inputContentContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/craft_content_spacing"
+                        android:hint="@string/label_craft_content_hint"
+                        android:textColorHint="@color/color_white_with_alpha"
+                        app:counterTextAppearance="@style/TextAppearance.AppTheme.Counter">
+
+                        <EditText
+                            android:id="@+id/inputContent"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@={event.content}"
+                            android:paddingTop="@dimen/craft_content_spacing"
+                            android:paddingLeft="@dimen/craft_content_text_padding_side"
+                            android:paddingRight="@dimen/craft_content_text_padding_side"
+                            android:paddingBottom="@dimen/craft_content_text_padding_bottom"
+                            style="@style/TextAppearance.AppTheme.Small" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="@dimen/craft_divider_margin_side"
+                android:layout_marginRight="@dimen/craft_divider_margin_side"
+                android:background="@drawable/drawable_line"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/craft_command_padding_side"
+                android:paddingRight="@dimen/craft_command_padding_side"
+                android:paddingTop="@dimen/craft_command_padding_updown"
+                android:paddingBottom="@dimen/craft_command_padding_updown">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_normal"
+                    android:layout_height="@dimen/icon_size_normal"
+                    android:alpha="@{event.emotion != Event.EMOTION_UNDEFINED ? 1.0f : 0.3f }"
+                    android:src="@{view.convertDrawable(event.emotion), default=@drawable/ic_emotion}"
+                    android:clickable="true"
+                    android:onClick="@{() -> view.selectEmotion()}"/>
+
+                <android.support.v4.widget.Space
+                    android:layout_width="@dimen/craft_command_item_spacing"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_normal"
+                    android:layout_height="@dimen/icon_size_normal"
+                    android:alpha="@{event.path != null ? 1.0f : 0.3f }"
+                    android:src="@drawable/ic_photo"
+                    android:clickable="true"
+                    android:onClick="@{() -> view.selectPhoto()}"/>
+
+                <android.support.v4.widget.Space
+                    android:layout_width="@dimen/craft_command_item_spacing"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_normal"
+                    android:layout_height="@dimen/icon_size_normal"
+                    android:alpha="@{event.location != null ? 1.0f : 0.3f }"
+                    android:src="@drawable/ic_location"
+                    android:clickable="true"
+                    android:onClick="@{() -> view.selectLocation()}"/>
+
+                <android.support.v4.widget.Space
+                    android:layout_width="@dimen/craft_command_item_spacing"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@={event.location}"
+                    android:maxLines="1"
+                    style="@style/TextAppearance.AppTheme.Small"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>

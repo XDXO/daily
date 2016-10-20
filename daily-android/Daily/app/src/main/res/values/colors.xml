@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">@color/color_app_background_top</color>
+    <color name="colorPrimaryDark">@color/color_app_background_bottom</color>
+    <color name="colorAccent">@color/color_white_with_alpha</color>
+
+    <color name="color_dialog_base">#363636</color>
+
+    <color name="cardview_photo_background">@color/color_white_with_alpha</color>
+
+    <color name="color_app_background_top">#8A7B7B</color>
+    <color name="color_app_background_bottom">#312424</color>
+
+    <color name="color_divider">#4Dffffff</color>
+    <color name="color_white_with_alpha">#7DFFFFFF</color>
+
+</resources>

@@ -1,0 +1,41 @@
+<resources>
+
+    <dimen name="icon_size_normal">24dp</dimen>
+    <dimen name="icon_size_small">12dp</dimen>
+
+    <dimen name="font_size_large">18dp</dimen>
+    <dimen name="font_size_medium">14dp</dimen>
+    <dimen name="font_size_small">12dp</dimen>
+
+
+    <dimen name="dialog_emotion_padding">24dp</dimen>
+    <dimen name="dialog_emotion_divider_margin">8dp</dimen>
+    <dimen name="dialog_emotion_item_padding">16dp</dimen>
+    <dimen name="dialog_emotion_item_text_padding_left">24dp</dimen>
+
+
+    <dimen name="event_item_padding_left">20dp</dimen>
+    <dimen name="event_item_timeline_size">54dp</dimen>
+    <dimen name="event_item_timeline_size_half">27dp</dimen>
+    <dimen name="event_item_content_padding_updown">20dp</dimen>
+    <dimen name="event_item_content_padding_side">14dp</dimen>
+    <dimen name="event_item_divider_margin">18dp</dimen>
+    <dimen name="event_item_date_height">75dp</dimen>
+    <dimen name="event_item_icon_spacing">6dp</dimen>
+
+
+    <dimen name="craft_content_spacing">12dp</dimen>
+    <dimen name="craft_content_padding_side">24dp</dimen>
+
+    <dimen name="craft_image_icon_delete_margin">12dp</dimen>
+    <dimen name="craft_image_height">216dp</dimen>
+    <dimen name="craft_image_radius">8dp</dimen
+        >
+    <dimen name="craft_command_padding_side">13dp</dimen>
+    <dimen name="craft_command_padding_updown">16dp</dimen>
+    <dimen name="craft_command_item_spacing">16dp</dimen>
+    <dimen name="craft_content_text_padding_side">4dp</dimen>
+    <dimen name="craft_content_text_padding_bottom">12dp</dimen>
+    <dimen name="craft_divider_margin_side">8dp</dimen>
+
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="colorControlNormal">@color/color_white_with_alpha</item>
+        <item name="actionMenuTextColor">@color/color_white_with_alpha</item>
+        
+        <item name="android:statusBarColor">@color/color_app_background_top</item>
+        <item name="android:navigationBarColor">@color/color_app_background_bottom</item>
+
+        <item name="android:alertDialogTheme">@style/AppTheme.AlertDialogTheme</item>
+
+    </style>
+
+</resources>

@@ -1,0 +1,32 @@
+<resources>
+
+    <string name="app_name">Daily</string>
+    <string name="action_craft">New Diary</string>
+
+    <string name="label_picker_title">Select a picture</string>
+
+    <string name="label_dialog_dismiss_title">Discard</string>
+    <string name="label_dialog_dismiss_description">All things you entered will be discarded.\nAre you sure ?</string>
+
+    <string name="label_entry_error_load_events">Failed to load events :(</string>
+    <string name="label_entry_error_network_error">Network is not stable :(</string>
+    <string name="label_entry_error_undefined">Unknown error occurred :(</string>
+
+    <string name="label_craft_title_hint">Diary Title</string>
+    <string name="label_craft_content_hint">What\'s going on with you ?</string>
+
+    <string name="label_craft_error_empty_title">Empty title</string>
+    <string name="label_craft_error_empty_content">Empty content</string>
+    <string name="label_craft_error_pick_place">Failed to pick a place :(</string>
+    <string name="label_craft_error_load_image">Failed to load image :(</string>
+    <string name="label_craft_error_unavailable_google_services">Failed to load Google services :(</string>
+    <string name="label_craft_error_post_new_event">Failed to post :(</string>
+
+    <string name="label_dialog_emotion_neutral">Soso</string>
+    <string name="label_dialog_emotion_goodie">Goodie</string>
+    <string name="label_dialog_emotion_happy">Happy</string>
+    <string name="label_dialog_emotion_sad">Sad</string>
+    <string name="label_dialog_emotion_disappointed">Disappointed</string>
+    <string name="label_dialog_emotion_select_none">Select None</string>
+
+</resources>

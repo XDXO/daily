@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="kr.plurly.daily.domain.Event"/>
+
+        <variable name="emotion" type="java.lang.Integer"/>
+        <variable name="dialog" type="kr.plurly.daily.dialog.EmotionDialog"/>
+
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/color_dialog_base"
+        android:padding="@dimen/dialog_emotion_padding"
+        android:tag="@{String.valueOf(emotion)}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dialog_emotion_item_padding"
+            android:clickable="true"
+            android:onClick="@{() -> dialog.setEmotion(Event.EMOTION_HAPPY)}">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_normal"
+                android:layout_height="@dimen/icon_size_normal"
+                android:src="@drawable/ic_emotion_happy"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/dialog_emotion_item_text_padding_left"
+                android:text="@string/label_dialog_emotion_happy"
+                style="@style/TextAppearance.AppTheme.Medium"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dialog_emotion_item_padding"
+            android:clickable="true"
+            android:onClick="@{() -> dialog.setEmotion(Event.EMOTION_GOODIE)}">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_normal"
+                android:layout_height="@dimen/icon_size_normal"
+                android:src="@drawable/ic_emotion_goodie"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/dialog_emotion_item_text_padding_left"
+                android:text="@string/label_dialog_emotion_goodie"
+                style="@style/TextAppearance.AppTheme.Medium"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dialog_emotion_item_padding"
+            android:clickable="true"
+            android:onClick="@{() -> dialog.setEmotion(Event.EMOTION_NEUTRAL)}">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_normal"
+                android:layout_height="@dimen/icon_size_normal"
+                android:src="@drawable/ic_emotion_neutral"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/dialog_emotion_item_text_padding_left"
+                android:text="@string/label_dialog_emotion_neutral"
+                style="@style/TextAppearance.AppTheme.Medium"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dialog_emotion_item_padding"
+            android:clickable="true"
+            android:onClick="@{() -> dialog.setEmotion(Event.EMOTION_SAD)}">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_normal"
+                android:layout_height="@dimen/icon_size_normal"
+                android:src="@drawable/ic_emotion_sad"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/dialog_emotion_item_text_padding_left"
+                android:text="@string/label_dialog_emotion_sad"
+                style="@style/TextAppearance.AppTheme.Medium"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dialog_emotion_item_padding"
+            android:clickable="true"
+            android:onClick="@{() -> dialog.setEmotion(Event.EMOTION_DISAPPOINTED)}">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_normal"
+                android:layout_height="@dimen/icon_size_normal"
+                android:src="@drawable/ic_emotion_disappointed"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/dialog_emotion_item_text_padding_left"
+                android:text="@string/label_dialog_emotion_disappointed"
+                style="@style/TextAppearance.AppTheme.Medium"/>
+
+        </LinearLayout>
+        
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="@dimen/dialog_emotion_divider_margin"
+            android:background="@drawable/drawable_line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dialog_emotion_item_padding"
+            android:clickable="true"
+            android:onClick="@{() -> dialog.setEmotion(Event.EMOTION_UNDEFINED)}">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_normal"
+                android:layout_height="@dimen/icon_size_normal"
+                android:src="@drawable/ic_emotion_delete"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/dialog_emotion_item_text_padding_left"
+                android:text="@string/label_dialog_emotion_select_none"
+                android:textColor="@android:color/white"
+                android:textSize="14dp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

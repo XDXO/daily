@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View"/>
+        <import type="kr.plurly.daily.util.EventUtil"/>
+        <import type="kr.plurly.daily.util.TimeUtil"/>
+        <import type="kr.plurly.daily.domain.Event"/>
+        <import type="kr.plurly.daily.collection.adapter.EventThumbnailAdapter"/>
+
+        <variable name="position" type="java.lang.Integer"/>
+        <variable name="size" type="java.lang.Integer"/>
+        <variable name="expanded" type="java.lang.Boolean"/>
+        <variable name="event" type="kr.plurly.daily.domain.Event"/>
+
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/event_item_padding_left">
+
+        <FrameLayout
+            android:layout_width="@dimen/event_item_timeline_size"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="@dimen/event_item_timeline_size"
+                android:layout_height="@dimen/event_item_timeline_size"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/drawable_vector_light"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|top"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="3dp"
+                    android:layout_height="@dimen/event_item_timeline_size_half"
+                    android:background="@drawable/drawable_line"
+                    android:visibility="@{size > 1 &amp;&amp; size - 1 >= position &amp;&amp; position >= 1 ? View.VISIBLE : View.INVISIBLE }"/>
+
+                <ImageView
+                    android:layout_width="3dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_line"
+                    android:visibility="@{size > 1 &amp;&amp; size - 2 >= position &amp;&amp; position >= 0 ? View.VISIBLE : View.INVISIBLE }"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="@{event.synced? 1.0f : 0.3f}"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/event_item_content_padding_updown"
+            android:paddingRight="@dimen/event_item_content_padding_updown"
+            android:paddingTop="@dimen/event_item_content_padding_side"
+            android:paddingBottom="@dimen/event_item_content_padding_side">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{event.title}"
+                android:maxLines="1"
+                style="@style/TextAppearance.AppTheme.Large"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="8dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutFolded"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="1dp"
+                    android:visibility="@{expanded? View.GONE : View.VISIBLE}">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="@{event.emotion != Event.EMOTION_UNDEFINED ? View.VISIBLE : View.GONE}">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_small"
+                            android:layout_height="@dimen/icon_size_small"
+                            android:src="@drawable/ic_emotion"/>
+
+                        <android.support.v4.widget.Space
+                            android:layout_width="@dimen/event_item_icon_spacing"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="@{event.path != null ? View.VISIBLE : View.GONE}">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_small"
+                            android:layout_height="@dimen/icon_size_small"
+                            android:src="@drawable/ic_photo"/>
+
+                        <android.support.v4.widget.Space
+                            android:layout_width="@dimen/event_item_icon_spacing"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_size_small"
+                        android:layout_height="@dimen/icon_size_small"
+                        android:src="@drawable/ic_location"
+                        android:visibility="@{event.hasLocation() ? View.VISIBLE : View.GONE}"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutExpanded"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{expanded? View.VISIBLE : View.GONE}">
+
+                    <LinearLayout
+                        android:id="@+id/layoutEmotion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="4dp"
+                        android:visibility="@{event.emotion != Event.EMOTION_UNDEFINED ? View.VISIBLE : View.GONE}">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_small"
+                            android:layout_height="@dimen/icon_size_small"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_emotion"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.7"
+                            android:paddingLeft="8dp"
+                            android:text="@{EventUtil.emotionLabel(event.emotion)}"
+                            style="@style/TextAppearance.AppTheme.Small"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="4dp"
+                        android:visibility="@{event.hasLocation() ? View.VISIBLE : View.GONE}">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_small"
+                            android:layout_height="@dimen/icon_size_small"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_location"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.7"
+                            android:paddingLeft="8dp"
+                            android:text="@{event.location}"
+                            style="@style/TextAppearance.AppTheme.Small"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutDateTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="4dp">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_small"
+                            android:layout_height="@dimen/icon_size_small"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_date"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.7"
+                            android:paddingLeft="8dp"
+                            android:text="@{TimeUtil.getDate(event.createdAt)}"
+                            style="@style/TextAppearance.AppTheme.Small"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.7"
+                            android:paddingLeft="8dp"
+                            android:text="@{TimeUtil.getTime(event.createdAt)}"
+                            style="@style/TextAppearance.AppTheme.Small"/>
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{event.path != null ? View.VISIBLE : View.GONE}"
+                        app:cardCornerRadius="8dp"
+                        app:cardBackgroundColor="@color/cardview_photo_background">
+
+                        <ImageView
+                            android:id="@+id/imageViewContent"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"/>
+
+                    </android.support.v7.widget.CardView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:alpha="0.7"
+                        android:text="@{event.content}"
+                        style="@style/TextAppearance.AppTheme.Small"/>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/event_item_divider_margin"
+            android:layout_marginBottom="@dimen/event_item_divider_margin"
+            android:background="@drawable/drawable_line"
+            android:visibility="@{expanded? View.INVISIBLE : View.VISIBLE}"/>
+
+        <LinearLayout
+            android:id="@+id/layoutDate"
+            android:layout_width="@dimen/event_item_date_height"
+            android:layout_height="wrap_content"
+            android:alpha="@{event.synced? 1.0f : 0.3f}"
+            android:orientation="vertical"
+            android:paddingTop="14dp"
+            android:visibility="@{expanded? View.INVISIBLE : View.VISIBLE}">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text='@{TimeUtil.getMonth(event.createdAt)}'
+                style="@style/TextAppearance.AppTheme.Large"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="8dp"
+                android:alpha="0.7"
+                android:text='@{TimeUtil.getDay(event.createdAt)}'
+                style="@style/TextAppearance.AppTheme.Small"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>
