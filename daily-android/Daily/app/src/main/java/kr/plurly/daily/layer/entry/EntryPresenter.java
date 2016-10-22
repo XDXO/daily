@@ -93,6 +93,6 @@ public class EntryPresenter extends DailyPresenter<EntryView> {
     private Date getLatestEventTimestamp() {
 
         Realm realm = Realm.getDefaultInstance();
-        return realm.where(Event.class).maximumDate(Event.FIELD_CREATED_AT);
+        return realm.where(Event.class).equalTo(Event.FIELD_SYNCED, true).maximumDate(Event.FIELD_CREATED_AT);
     }
 }

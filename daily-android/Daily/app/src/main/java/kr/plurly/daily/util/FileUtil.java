@@ -15,6 +15,8 @@ public class FileUtil {
     private static final String SIGNATURE_DOWNLOADS_DOCUMENT = "com.android.providers.downloads.documents";
     private static final String SIGNATURE_EXTERNAL_STORAGE_DOCUMENT = "com.android.externalstorage.documents";
 
+    private static final String TYPE_PRIMARY = "primary";
+
     private static final String SCHEME_CONTENT_PROVIDER = "content";
     private static final String SCHEME_FILE = "file";
 
@@ -36,7 +38,7 @@ public class FileUtil {
                     final String[] split = docId.split(":");
                     final String type = split[0];
 
-                    if ("primary".equalsIgnoreCase(type)) {
+                    if (TYPE_PRIMARY.equalsIgnoreCase(type)) {
 
                         return Environment.getExternalStorageDirectory() + "/" + split[1];
                     }

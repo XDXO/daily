@@ -4,7 +4,7 @@ import kr.plurly.daily.domain.Event;
 
 public class UpdateEventJob {
 
-    public Event event;
+    public final Event event;
 
     public UpdateEventJob(Event event) {
 

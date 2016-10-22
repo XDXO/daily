@@ -9,10 +9,6 @@ import kr.plurly.daily.inject.module.AppModule;
 
 public class App extends Application {
 
-    // TODO : 1. Post (Sync / Delete) Test
-    // TODO : 2. Check Logic for Loss of Connection
-    // TODO : 3. Server Connection Test
-
     private static App instance;
     public static App getInstance() { return instance; }
 
